@@ -1,20 +1,50 @@
-# 🌩️ Meu Portfólio de Projetos AWS
+<p align="center">
+  <h1>🌩️ Meu Portfólio de Projetos AWS</h1>
+  <img src="https://img.shields.io/badge/AWS-Cloud-orange?logo=amazonaws&logoColor=white" />
+  <img src="https://img.shields.io/badge/Status-Em_Desenvolvimento-blue" />
+  <img src="https://img.shields.io/badge/Aprendizado-Contínuo-brightgreen" />
+</p>
 
-👋 Olá! Seja bem-vindo(a) ao meu portfólio de projetos e labs da AWS.
-Aqui você encontra todos os meus desafios práticos da Escola da Nuvem, organizados em subpastas — cada uma com seu próprio README, código e descrição do projeto.
+---
 
-🚀 Projetos e Labs em Destaque
-1️⃣ Progress Tracker (S3)
+<div align="center">
+  <strong>Repositório dedicado aos meus projetos e laboratórios AWS, criados durante minha jornada na nuvem.</strong>
+</div>
 
-📌 Site estático para acompanhar meu progresso nos KC’s e Labs
-💾 Persistência inicial com LocalStorage
-📁 Clique na pasta do projeto para explorar
+---
 
-🌟 Objetivo do Repositório
+## ✨  **Estrutura do Repositório**
 
-💡 Reunir todos os meus projetos práticos em um só lugar
-🛠️ Facilitar organização dos estudos em AWS
-📚 Criar um histórico claro de aprendizado
-📊 Documentar cada projeto com prints, explicações e resultados
+Cada projeto está organizado em uma **subpasta** contendo:
 
-💙 Fique à vontade para explorar, aprender junto e acompanhar minha evolução na nuvem! ☁️
+- 📄 README próprio  
+- 🧩 Código-fonte  
+- 🖼️ Prints / diagramas  
+- ☁️ Serviços AWS utilizados  
+
+---
+
+## 🚀 **Projetos e Labs**
+
+### **1️⃣ Progress Tracker (S3)**  
+📌 Site estático para acompanhar meu progresso nos KC’s e Labs  
+💾 Persistência inicial usando LocalStorage  
+📁 Acesse a pasta do projeto para ver código, prints e documentação
+
+---
+
+
+## 🎯 **Objetivo do Repositório**
+
+- 💡 Centralizar meus projetos práticos da AWS  
+- 🛠️ Mostrar minha evolução em Cloud Computing  
+- 📚 Manter uma documentação clara e objetiva  
+- 🚀 Experimentar novos serviços AWS constantemente  
+
+---
+
+<p align="center">
+  💙 Obrigado por visitar!  
+  <br>  
+  ☁️ Sinta-se à vontade para explorar e acompanhar minha jornada na nuvem! 🚀
+</p>
