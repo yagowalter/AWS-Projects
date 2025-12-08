@@ -1,9 +1,13 @@
-<p align="center">
+<div align="center">
+
   <h1>🌩️ Meu Portfólio de Projetos AWS</h1>
+
   <img src="https://img.shields.io/badge/AWS-Cloud-orange?logo=amazonaws&logoColor=white" />
   <img src="https://img.shields.io/badge/Status-Em_Desenvolvimento-blue" />
   <img src="https://img.shields.io/badge/Aprendizado-Contínuo-brightgreen" />
-</p>
+
+</div>
+
 
 ---
 
