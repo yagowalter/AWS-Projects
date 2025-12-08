@@ -1,5 +1,5 @@
 // ============================
-// LISTAS COM DATAS
+// LISTAS COM DATAS (MANTIDAS)
 // ============================
 
 const kcs = [
@@ -92,62 +92,38 @@ const cps = [
 // RENDERIZAÇÃO DAS LISTAS
 // ============================
 
+function renderList(items, div, prefix, saved) {
+    div.innerHTML = ""; 
+
+    items.forEach((item, idx) => {
+        const id = prefix + "_" + idx;
+        const done = saved[id] === true;
+
+        const divTask = document.createElement("div");
+        divTask.className = "task" + (done ? " done" : "");
+        divTask.onclick = () => toggle(id);
+
+        divTask.innerHTML = `
+            <div>${item.title}</div>
+            <div class="deadline">Prazo de envio: ${item.deadline}</div>
+        `;
+
+        div.appendChild(divTask);
+    });
+}
+
 function carregar() {
     const saved = JSON.parse(localStorage.getItem("progress")) || {};
     const kcsDiv = document.getElementById("kcs");
     const labsDiv = document.getElementById("labs");
     const cpsDiv = document.getElementById("cps");
 
-    kcsDiv.innerHTML = "";
-    labsDiv.innerHTML = "";
-    cpsDiv.innerHTML = "";
-
-    kcs.forEach((item, idx) => {
-        const done = saved["kc_" + idx] === true;
-
-        const div = document.createElement("div");
-        div.className = "task" + (done ? " done" : "");
-        div.onclick = () => toggle("kc_" + idx);
-
-        div.innerHTML = `
-            <div>${item.title}</div>
-            <div class="deadline">Prazo de envio: ${item.deadline}</div>
-        `;
-
-        kcsDiv.appendChild(div);
-    });
-
-    labs.forEach((item, idx) => {
-        const done = saved["lab_" + idx] === true;
-
-        const div = document.createElement("div");
-        div.className = "task" + (done ? " done" : "");
-        div.onclick = () => toggle("lab_" + idx);
-
-        div.innerHTML = `
-            <div>${item.title}</div>
-            <div class="deadline">Prazo de envio: ${item.deadline}</div>
-        `;
-
-        labsDiv.appendChild(div);
-    });
-
-    cps.forEach((item, idx) => {
-        const done = saved["cps_" + idx] === true;
-
-        const div = document.createElement("div");
-        div.className = "task" + (done ? " done" : "");
-        div.onclick = () => toggle("cps_" + idx);
-
-        div.innerHTML = `
-            <div>${item.title}</div>
-            <div class="deadline">Prazo de envio: ${item.deadline}</div>
-        `;
-
-        cpsDiv.appendChild(div);
-    });
+    renderList(kcs, kcsDiv, "kc", saved);
+    renderList(labs, labsDiv, "lab", saved);
+    renderList(cps, cpsDiv, "cps", saved);
 
     atualizarProgresso();
+    atualizarIconeTema();
 }
 
 // ============================
@@ -162,23 +138,17 @@ function toggle(id) {
 }
 
 // ============================
-// BARRA DE PROGRESSO + PARABÉNS
-// ============================
-
-// ============================
-// BARRA DE PROGRESSO + PARABÉNS
+// BARRA DE PROGRESSO + PARABÉNS (MODAL RESTAURADO)
 // ============================
 
 function atualizarProgresso() {
     const saved = JSON.parse(localStorage.getItem("progress")) || {};
-    // MODIFICADO: Incluindo cps.length no cálculo do total
     const total = kcs.length + labs.length + cps.length;
     let concluidos = Object.values(saved).filter(v => v).length;
-    if (concluidos > total) concluidos = total;
+    concluidos = Math.min(concluidos, total);
 
     let porcentagem = Math.round((concluidos / total) * 100);
-    if (porcentagem > 100) porcentagem = 100;
-
+    porcentagem = Math.min(porcentagem, 100);
 
     document.getElementById("progress-bar").style.width = porcentagem + "%";
     document.getElementById("progressText").innerText = porcentagem + "%";
@@ -188,6 +158,7 @@ function atualizarProgresso() {
     const typingText = document.getElementById("typingText");
     const closeBtn = document.getElementById("closeCongrats");
 
+    // Função de digitação (typeWriter) RESTAURADA
     function typeWriter(text, element, speed = 50) {
         element.innerHTML = "";
         let i = 0;
@@ -202,77 +173,74 @@ function atualizarProgresso() {
     }
 
     if (concluidos === total && total > 0) {
-
-        // Impede de mostrar várias vezes se já abriu antes
         if (!localStorage.getItem("allCompletedShown")) {
-
             // Confete 🎉
-            confetti({
-                particleCount: 250,
-                spread: 90,
-                origin: { y: 0.6 }
-            });
+            if (typeof confetti === 'function') {
+                confetti({ particleCount: 250, spread: 90, origin: { y: 0.6 } });
+            }
 
-            // Mostra modal
-            modal.classList.add("show");
-
-            // Texto digitando
-            typeWriter("🎉Parabéns! Você concluiu tudo!🎉", typingText);
-
-            // Marca como exibido
+            if (modal) {
+                modal.classList.add("show");
+                if (typingText) {
+                    typeWriter("🎉Parabéns! Você concluiu tudo!🎉", typingText);
+                }
+            }
             localStorage.setItem("allCompletedShown", "yes");
         }
-
     } else {
-        modal.classList.remove("show");
+        if (modal) {
+             modal.classList.remove("show");
+        }
         localStorage.removeItem("allCompletedShown");
     }
 
-    closeBtn.onclick = () => {
-        modal.classList.remove("show");
-    };
-
-}
-
-
-const themeToggle = document.getElementById("themeToggle");
-
-function atualizarIconeTema() {
-    const resetBtn = document.getElementById("resetBtn");
-
-    if (document.body.classList.contains("dark")) {
-        themeToggle.src = "assets/img/sun.png";
-        resetBtn.src = "assets/img/reiniciar_branco.png";
-    } else {
-        themeToggle.src = "assets/img/moon.png";
-        resetBtn.src = "assets/img/reiniciar_preto.png";
+    if (closeBtn) {
+        closeBtn.onclick = () => {
+            if (modal) {
+                 modal.classList.remove("show");
+            }
+        };
     }
 }
 
-themeToggle.onclick = () => {
-    document.body.classList.toggle("dark");
-    localStorage.setItem("temaEscuro", document.body.classList.contains("dark"));
-    atualizarIconeTema();
-};
+
+// ---------------------------
+// TEMA ESCURO/CLARO (MANTIDO)
+// ---------------------------
+const themeToggle = document.getElementById("themeToggle");
+const resetBtn = document.getElementById("resetBtn");
+
+function atualizarIconeTema() {
+    if (themeToggle && resetBtn) {
+        if (document.body.classList.contains("dark")) {
+            themeToggle.src = "assets/img/sun.png";
+            resetBtn.src = "assets/img/reiniciar_branco.png"; 
+        } else {
+            themeToggle.src = "assets/img/moon.png";
+            resetBtn.src = "assets/img/reiniciar_preto.png"; 
+        }
+    }
+}
+
+if (themeToggle) {
+    themeToggle.onclick = () => {
+        document.body.classList.toggle("dark");
+        localStorage.setItem("temaEscuro", document.body.classList.contains("dark"));
+        atualizarIconeTema();
+    };
+}
 
 if (localStorage.getItem("temaEscuro") === "true") {
     document.body.classList.add("dark");
 }
 
 // ---------------------------
-// RESET (botão)
+// RESET (MANTIDO)
 // ---------------------------
-const resetBtn = document.getElementById("resetBtn");
 if (resetBtn) {
     resetBtn.onclick = () => {
-        // remove progresso e a flag que indica que a animação já foi mostrada
         localStorage.removeItem("progress");
         localStorage.removeItem("allCompletedShown");
-        // opcional: garante que o tema salvo não seja apagado aqui
-        // (se quiser também resetar tema, descomente abaixo)
-        // localStorage.removeItem("temaEscuro");
-
-        // recarrega a lista na UI
         carregar();
     };
 }
@@ -280,33 +248,24 @@ if (resetBtn) {
 // --- SINCRONIZAR LOCALSTORAGE COM LISTA ATUAL --- //
 function limparLocalStorageAntigo() {
     const saved = JSON.parse(localStorage.getItem("progress")) || {};
-
-    // IDs das tarefas atuais (kc_0, kc_1, lab_0, lab_1, cps_0, cps_1, etc.)
     const idsAtuais = [
         ...kcs.map((_, i) => `kc_${i}`),
         ...labs.map((_, i) => `lab_${i}`),
-        ...cps.map((_, i) => `cps_${i}`) // ADICIONADO: Incluindo IDs dos CP's
+        ...cps.map((_, i) => `cps_${i}`)
     ];
-
     let mudou = false;
-
-    // Remove chaves antigas
+    let novoSaved = {};
     for (const key of Object.keys(saved)) {
-        // Certifica que "allCompletedShown" não seja apagado
-        if (!idsAtuais.includes(key) && key !== "allCompletedShown") {
-            delete saved[key];
+        if (idsAtuais.includes(key) || key === "allCompletedShown") {
+            novoSaved[key] = saved[key];
+        } else {
             mudou = true;
         }
     }
-
     if (mudou) {
-        localStorage.setItem("progress", JSON.stringify(saved));
+        localStorage.setItem("progress", JSON.stringify(novoSaved));
     }
 }
 
-// Execute assim que o JS carregar
 window.addEventListener("DOMContentLoaded", limparLocalStorageAntigo);
-
-
-atualizarIconeTema();
 carregar();
