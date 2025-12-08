@@ -54,7 +54,7 @@ const labs = [
     { title: "Lab 267 - Criar a sua VPC e iniciar um servidor Web", deadline: "08/12/2025" },
     { title: "Lab 279 - Introdução ao gerenciamento de identidade e acesso (IAM)", deadline: "08/12/2025" },
     { title: "Lab 160 - Crie seu servidor de banco de dados...", deadline: "22/12/2025" },
-    { title: "Lab 1 - Ambiente de Sandbox", deadline: "05/01/2025"},
+    { title: "Lab 1 - Ambiente de Sandbox", deadline: "05/01/2025" },
     { title: "Lab 168 - Instalar e configurar a CLI da AWS", deadline: "-" },
     { title: "Lab 169 - Usar o AWS Systems Manager", deadline: "-" },
     { title: "Lab 170 - Criar um site no S3", deadline: "-" },
@@ -83,6 +83,11 @@ const labs = [
     { title: "Lab 316 - [AI] Amazon SageMaker - Training", deadline: "-" },
 ];
 
+const cps = [
+    { title: "Lifelong Learning e PDI", deadline: "18/12/2025" },
+    { title: "Atividade de CV", deadline: "20/12/2025" },
+];
+
 // ============================
 // RENDERIZAÇÃO DAS LISTAS
 // ============================
@@ -91,9 +96,11 @@ function carregar() {
     const saved = JSON.parse(localStorage.getItem("progress")) || {};
     const kcsDiv = document.getElementById("kcs");
     const labsDiv = document.getElementById("labs");
+    const cpsDiv = document.getElementById("cps");
 
     kcsDiv.innerHTML = "";
     labsDiv.innerHTML = "";
+    cpsDiv.innerHTML = "";
 
     kcs.forEach((item, idx) => {
         const done = saved["kc_" + idx] === true;
@@ -125,6 +132,21 @@ function carregar() {
         labsDiv.appendChild(div);
     });
 
+    cps.forEach((item, idx) => {
+        const done = saved["cps_" + idx] === true;
+
+        const div = document.createElement("div");
+        div.className = "task" + (done ? " done" : "");
+        div.onclick = () => toggle("cps_" + idx);
+
+        div.innerHTML = `
+            <div>${item.title}</div>
+            <div class="deadline">Prazo de envio: ${item.deadline}</div>
+        `;
+
+        cpsDiv.appendChild(div);
+    });
+
     atualizarProgresso();
 }
 
@@ -143,11 +165,16 @@ function toggle(id) {
 // BARRA DE PROGRESSO + PARABÉNS
 // ============================
 
+// ============================
+// BARRA DE PROGRESSO + PARABÉNS
+// ============================
+
 function atualizarProgresso() {
     const saved = JSON.parse(localStorage.getItem("progress")) || {};
-    const total = kcs.length + labs.length;
+    // MODIFICADO: Incluindo cps.length no cálculo do total
+    const total = kcs.length + labs.length + cps.length;
     let concluidos = Object.values(saved).filter(v => v).length;
-    if  (concluidos > total) concluidos = total;
+    if (concluidos > total) concluidos = total;
 
     let porcentagem = Math.round((concluidos / total) * 100);
     if (porcentagem > 100) porcentagem = 100;
@@ -237,34 +264,36 @@ if (localStorage.getItem("temaEscuro") === "true") {
 // ---------------------------
 const resetBtn = document.getElementById("resetBtn");
 if (resetBtn) {
-  resetBtn.onclick = () => {
-    // remove progresso e a flag que indica que a animação já foi mostrada
-    localStorage.removeItem("progress");
-    localStorage.removeItem("allCompletedShown");
-    // opcional: garante que o tema salvo não seja apagado aqui
-    // (se quiser também resetar tema, descomente abaixo)
-    // localStorage.removeItem("temaEscuro");
+    resetBtn.onclick = () => {
+        // remove progresso e a flag que indica que a animação já foi mostrada
+        localStorage.removeItem("progress");
+        localStorage.removeItem("allCompletedShown");
+        // opcional: garante que o tema salvo não seja apagado aqui
+        // (se quiser também resetar tema, descomente abaixo)
+        // localStorage.removeItem("temaEscuro");
 
-    // recarrega a lista na UI
-    carregar();
-  };
+        // recarrega a lista na UI
+        carregar();
+    };
 }
 
 // --- SINCRONIZAR LOCALSTORAGE COM LISTA ATUAL --- //
 function limparLocalStorageAntigo() {
     const saved = JSON.parse(localStorage.getItem("progress")) || {};
 
-    // IDs das tarefas atuais (kc_0, kc_1, lab_0, lab_1, etc.)
+    // IDs das tarefas atuais (kc_0, kc_1, lab_0, lab_1, cps_0, cps_1, etc.)
     const idsAtuais = [
         ...kcs.map((_, i) => `kc_${i}`),
-        ...labs.map((_, i) => `lab_${i}`)
+        ...labs.map((_, i) => `lab_${i}`),
+        ...cps.map((_, i) => `cps_${i}`) // ADICIONADO: Incluindo IDs dos CP's
     ];
 
     let mudou = false;
 
     // Remove chaves antigas
     for (const key of Object.keys(saved)) {
-        if (!idsAtuais.includes(key)) {
+        // Certifica que "allCompletedShown" não seja apagado
+        if (!idsAtuais.includes(key) && key !== "allCompletedShown") {
             delete saved[key];
             mudou = true;
         }
