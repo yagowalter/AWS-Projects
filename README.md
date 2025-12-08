@@ -1,70 +1,49 @@
-# 👨🏻‍💻 Yago Walter  
-**`Software Developer`**
+## ☁️ Repositório AWS Cloud: Escola da Nuvem ✨
 
-Me chamo Yago Walter, sou desenvolvedor com experiência na criação de aplicações e interfaces, com forte afinidade por Flutter e interesse crescente em Cloud. Minha trajetória começou na Fábrica de Software da Unipê, onde participei de um projeto real que fortaleceu minha base em colaboração, metodologias ágeis, versionamento e prototipação.
+Este repositório é dedicado a armazenar e organizar todos os **Labs** e **Projetos** desenvolvidos durante minha jornada na **Escola da Nuvem**, focando nas tecnologias da **Amazon Web Services (AWS)**.
 
-Atualmente venho ampliando meus conhecimentos em desenvolvimento e fundamentos de computação em nuvem, explorando serviços essenciais da AWS para entender melhor aplicações modernas, automação e boas práticas de arquitetura.
-
-Busco evoluir continuamente, unindo curiosidade e prática para construir soluções eficientes, bem estruturadas e alinhadas às necessidades reais.
+Aqui você encontrará a documentação e os artefatos de código que demonstram meu progresso e habilidades em Cloud Computing.
 
 ---
 
-## 🎓 Formação & Desenvolvimento
+### 🔑 Focos Tecnológicos Principais
 
-* **Graduação em Ciência da Computação**
-    > Centro Universitário de João Pessoa (**UNIPÊ**) - 2019 - 2023
+Os projetos demonstram competência nos seguintes serviços e pilares da AWS:
 
-* **Programa de Qualificação em Cloud e IA**
-    > **AWS re/Start + IA (Escola da Nuvem)** - Foco em fundamentos de Cloud AWS, serviços essenciais e introdução à Inteligência Artificial (atualmente em andamento).
-
----
-
-
-## 🏗️ Projetos em Destaque
-
-* **[Progress-Tracker](https://github.com/yagowalter/AWS-Projects/tree/main/aws-progress-tracker)**
-    > Ferramenta pessoal desenvolvida para monitorar o progresso em estudos de **AWS** (KC’s e Labs) na Escola da Nuvem. O projeto é um site **estático (HTML/CSS/JS)** e serve como um **exemplo prático de Cloud Computing**, sendo hospedado no **Amazon S3** utilizando o recurso de Static Website Hosting.
-
-* **[HemoPlanner](https://github.com/yagowalter/TCC-Calendario)**
-    > Aplicativo mobile desenvolvido em **Flutter** para auxiliar pacientes hemofílicos. A ferramenta permite o monitoramento de episódios de sangramento e o registro da medicação (Fator VIII) em um calendário interativo, seguindo a lógica de apps de rastreamento.
-
-* **[Portifólio Básico](https://github.com/yagowalter/yagowalter.github.io)**
-    > Portfólio inicial construído com **HTML, CSS e JavaScript**. Projetado para servir como vitrine dos projetos futuros e em desenvolvimento, com planos de evoluir continuamente sua arquitetura e design.
+* **Compute (EC2, Lambda):** 💻 Instâncias, Auto Scaling, Load Balancers e funções *serverless*.
+* **Armazenamento (S3, EBS, EFS):** 🗄️ Gerenciamento de objetos, volumes e sistemas de arquivos distribuídos.
+* **Rede (VPC):** 🌐 Configuração e isolamento de Redes Virtuais, Sub-redes e Roteamento.
+* **Banco de Dados (RDS, DynamoDB):** 💾 Serviços de Banco de Dados Relacionais e Não Relacionais.
+* **Segurança (IAM):** 🛡️ Gerenciamento de Identidade e Acesso e implementação do Modelo de Responsabilidade Compartilhada.
+* **Monitoramento e Logs (CloudWatch, CloudTrail):** 📈 Auditoria de ações e coleta de métricas de performance.
 
 ---
 
-### 🤖 Tecnologias & Ferramentas
+### ⚙️ Metodologia e Boas Práticas
 
-<img title="HTML" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"/> &nbsp;
-<img title="CSS" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"/> &nbsp;
-<img title="JavaScript" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"/> &nbsp;
-<img title="Flutter" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg"/> &nbsp;
-<img title="Dart" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg"/> &nbsp;
-<img title="Python" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"/> &nbsp;
-<img title="AWS" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" /> &nbsp;
-<img title="Git" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"/> &nbsp;
-<img title="Figma" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"/>
+Todos os projetos e labs são desenvolvidos seguindo as diretrizes e padrões da indústria e da AWS:
+
+* **AWS Well-Architected Framework:** Aplicação dos cinco pilares (Excelência Operacional, Segurança, Confiabilidade, Performance e Otimização de Custo) no design das soluções.
+* **DevOps:** Uso de ferramentas para automação, *deployment* e monitoramento contínuo.
+* **Infraestrutura como Código (IaC):** Utilização de ferramentas para gerenciamento de recursos de forma declarativa e repetível.
 
 ---
 
-## 📬 Contato
+### 🛠️ Outras Tecnologias Utilizadas
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yago-walter "Conecte-se a meu LinkedIn")
-[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:yago.walter_7@hotmail.com "Me envie um email")
-[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/users/205473472963411977 "Meu usuário do Discord")
-[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/_yagowalter/ "Siga-me no Instagram")
+Além dos serviços AWS, os projetos envolvem o uso de tecnologias e ferramentas complementares essenciais no ambiente Cloud:
+
+* **Sistemas Operacionais:** Linux (Ubuntu/Amazon Linux 2).
+* **Contêineres:** Docker / Amazon ECS (Elastic Container Service).
+* **Linguagens de Script:** Bash.
+* **Versionamento:** Git e GitHub.
 
 ---
 
-### 📊 Estatísticas
+### 🎯 Objetivo e Metas
 
-<img
-  align="left"
-  alt="Top Langs"
-  height="200"
-  style="padding-right:10px;"
-  src="https://github-readme-stats-5dmx.vercel.app/api/top-langs/?username=yagowalter&theme=radical&layout=compact&custom_title=Tecnologias"
-/>
+O principal objetivo deste repositório é servir como meu portfólio técnico, documentando o aprendizado e a aplicação dos conceitos da nuvem.
 
-<br clear="all"/>
-
+* Demonstrar a proficiência na arquitetura e implementação de soluções *cloud-native*.
+* Garantir a rastreabilidade e a organização de todas as entregas do programa.
+* Preparação contínua para a certificação **AWS Certified Cloud Practitioner (CLF-C02)**.
