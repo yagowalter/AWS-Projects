@@ -20,7 +20,7 @@ const kcs = [
     { title: "KC 296 – Práticas recomendadas de segurança para a criação de conta", deadline: "22/12/2025" },
     { title: "KC 297 – Programa de conformidade de segurança da AWS", deadline: "22/12/2025" },
     { title: "KC 298 – Recursos de segurança da AWS", deadline: "-" },
-    { title: "KC 309 – Amazon DynamoDB", deadline: "22/01" },
+    { title: "KC 309 – Amazon DynamoDB", deadline: "22/12/2025" },
     { title: "KC 308 – Amazon RDS", deadline: "-" },
     { title: "KC 167 - JAWS - KC - Well-Architected Framework", deadline: "05/01/2025" },
     { title: "KC 210 - JAWS - KC - Visão geral das operações do sistema", deadline: "-" },
