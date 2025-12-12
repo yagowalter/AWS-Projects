@@ -84,7 +84,7 @@ header h2 {
 
 .icon:hover {
     opacity: 1;
-    transform: scale(1.15);
+    transform: rotate(-20deg);
 }
 
 /* ---------------- PROGRESSO GERAL ---------------- */
