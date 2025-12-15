@@ -1,4 +1,4 @@
-# ☁️ Lab 01 – Amazon EC2: Criação e Gerenciamento de Instâncias
+# ☁️ Lab - Amazon EC2: Criação e Gerenciamento de Instâncias
 
 <p align="center">
   <img src="https://img.shields.io/badge/AWS-EC2-orange?logo=amazon-aws&logoColor=white" />
