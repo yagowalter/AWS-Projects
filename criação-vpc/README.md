@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/AWS-VPC-orange?logo=amazon-aws&logoColor=white" />
-  <img src="https://img.shields.io/badge/Nível-Intermediário-yellow" />
+  <img src="https://img.shields.io/badge/Nível-Iniciante-brightgreen" />
   <img src="https://img.shields.io/badge/Status-Concluído-blue" />
 </p>
 
