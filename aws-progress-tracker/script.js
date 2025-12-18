@@ -54,7 +54,6 @@ const labs = [
     { title: "Lab 267 - Criar a sua VPC e iniciar um servidor Web", deadline: "22/12/2025" },
     { title: "Lab 279 - Introdução ao gerenciamento de identidade e acesso (IAM)", deadline: "expirado" },
     { title: "Lab 160 - Crie seu servidor de banco de dados...", deadline: "05/01/2025" },
-    { title: "Lab 1 - Ambiente de Sandbox", deadline: "22/12/2025" },
     { title: "Lab 168 - Instalar e configurar a CLI da AWS", deadline: "12/01/2025" },
     { title: "Lab 169 - Usar o AWS Systems Manager", deadline: "-" },
     { title: "Lab 170 - Criar um site no S3", deadline: "-" },
