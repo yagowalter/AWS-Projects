@@ -32,37 +32,37 @@ Ao final deste laboratório, fui capaz de:
    - Criei uma **Virtual Private Cloud (VPC)** com faixa de IP customizada (CIDR block).  
    - Nomeei a VPC conforme o cenário do cliente e habilitei a opção de DNS hostnames.  
 
-   ![Criação da VPC](imgs/vpc-criacao.png)
+   ![Criação da VPC](assets/imgs/criacao-vpc.png)
 
-2. 🌐 **Configuração das Sub-redes**
-   - Adicionei **duas sub-redes**: uma **pública** (com acesso à internet) e uma **privada** (isolada).  
+2. 🌐 **Configuração das Sub-redes adicionais**
+   - Adicionei **duas sub-redes adicionais**: uma **pública** (com acesso à internet) e uma **privada** (isolada).  
    - As sub-redes foram criadas em **zonas de disponibilidade diferentes** para garantir alta disponibilidade.  
 
-   ![Sub-redes criadas](imgs/vpc-subredes.png)
+   ![Sub-redes criadas](assets/imgs/subnets.png)
 
 3. 🔗 **Internet Gateway e Tabelas de Roteamento**
    - Associei um **Internet Gateway** à VPC para permitir tráfego externo.  
    - Atualizei as **tabelas de rotas** da sub-rede pública para direcionar o tráfego à internet.  
 
-   ![Tabela de rotas configurada](imgs/vpc-rotas.png)
+   ![Tabela de rotas configurada](assets/imgs/route-tables.png)
 
 4. 🔐 **Criação do Grupo de Segurança**
    - Criei um **Security Group** permitindo tráfego **HTTP (porta 80)** e **SSH (porta 22)** apenas do meu IP.  
    - Associei o grupo à instância EC2 para controlar o tráfego de rede.  
 
-   ![Grupo de segurança](imgs/vpc-seguranca.png)
+   ![Grupo de segurança](assets/imgs/security-group.png)
 
 5. 🚀 **Inicialização da Instância EC2**
    - Iniciei uma instância **Amazon Linux 2** dentro da sub-rede pública.  
    - Associei o grupo de segurança criado e configurei o **user data** para instalar automaticamente o servidor web (Apache).  
 
-   ![Instância EC2](imgs/vpc-ec2.png)
+   ![Instância EC2](assets/imgs/instancia.png)
 
 6. 🌍 **Teste do Servidor Web**
    - Copiei o **IP público da instância** e testei o acesso via navegador.  
    - O servidor retornou a página padrão do Apache, confirmando a configuração correta.  
 
-   ![Servidor web em execução](imgs/vpc-webserver.png)
+   ![Servidor web em execução](assets/imgs/web.png)
 
 ---
 
