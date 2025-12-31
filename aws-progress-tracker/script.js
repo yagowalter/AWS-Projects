@@ -83,8 +83,8 @@ const labs = [
 ];
 
 const cps = [
-    { title: "Lifelong Learning e PDI", deadline: "18/12/2025" },
-    { title: "Atividade de CV", deadline: "20/12/2025" },
+    { title: "Lifelong Learning e PDI", deadline: "expirado" },
+    { title: "Atividade de CV", deadline: "expirado" },
 ];
 
 // ============================
