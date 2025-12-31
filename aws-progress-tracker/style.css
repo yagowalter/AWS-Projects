@@ -369,10 +369,21 @@ header h2 {
     header h2 {
         font-size: 1.5em;
         margin: 0;
-        background: linear-gradient(135deg, var(--accent), var(--accent-light));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: var(--accent);
     }
+
+    @supports (background-clip: text) or (-webkit-background-clip: text) {
+        header h2 {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            background-clip: text;
+            /* padrão */
+            -webkit-background-clip: text;
+            /* webkit */
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+
 
     .mobile-nav {
         display: none;
