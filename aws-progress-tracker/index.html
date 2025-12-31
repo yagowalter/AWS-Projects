@@ -13,12 +13,25 @@
 <body>
 
     <header>
-        <h2>Rastreador de Progresso Escola da Nuvem</h2>
-
-        <div class="icons">
-            <img id="resetBtn" src="assets/img/reiniciar_branco.png" class="icon" title="Resetar progresso">
-            <img id="themeToggle" src="assets/img/dark.png" class="icon" title="Alternar tema">
+        <div class="header-main">
+            <h2>Rastreador de Progresso</h2>
+            <div class="icons">
+                <div id="themeToggle" class="icon-btn" title="Alternar tema">
+                    <!-- SVG será inserido via JS -->
+                </div>
+                <div id="menuToggle" class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
         </div>
+
+        <nav id="mobileNav" class="mobile-nav">
+            <button class="nav-btn active" data-target="kcs-col">KC's</button>
+            <button class="nav-btn" data-target="labs-col">Labs</button>
+            <button class="nav-btn" data-target="cps-col">Competências</button>
+        </nav>
     </header>
 
     <div id="progress-container">
@@ -28,17 +41,17 @@
     </div>
 
     <div class="columns">
-        <div class="column">
+        <div id="kcs-col" class="column active-mobile">
             <h3>KC's</h3>
             <div id="kcs"></div>
         </div>
 
-        <div class="column">
+        <div id="labs-col" class="column">
             <h3>Labs</h3>
             <div id="labs"></div>
         </div>
 
-        <div class="column">
+        <div id="cps-col" class="column">
             <h3>Competências Profissionais</h3>
             <div id="cps"></div>
         </div>

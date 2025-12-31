@@ -92,7 +92,7 @@ const cps = [
 // ============================
 
 function renderList(items, div, prefix, saved) {
-    div.innerHTML = ""; 
+    div.innerHTML = "";
 
     items.forEach((item, idx) => {
         const id = prefix + "_" + idx;
@@ -188,7 +188,7 @@ function atualizarProgresso() {
         }
     } else {
         if (modal) {
-             modal.classList.remove("show");
+            modal.classList.remove("show");
         }
         localStorage.removeItem("allCompletedShown");
     }
@@ -196,7 +196,7 @@ function atualizarProgresso() {
     if (closeBtn) {
         closeBtn.onclick = () => {
             if (modal) {
-                 modal.classList.remove("show");
+                modal.classList.remove("show");
             }
         };
     }
@@ -204,19 +204,32 @@ function atualizarProgresso() {
 
 
 // ---------------------------
-// TEMA ESCURO/CLARO (MANTIDO)
+// TEMA ESCURO/CLARO (SVG REFINE)
 // ---------------------------
 const themeToggle = document.getElementById("themeToggle");
-const resetBtn = document.getElementById("resetBtn");
+
+const sunIcon = `
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>`;
+
+const moonIcon = `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.3807 2.01886C9.91573 3.38768 9 5.3369 9 7.49999C9 11.6421 12.3579 15 16.5 15C18.6631 15 20.6123 14.0843 21.9811 12.6193C21.6613 17.8537 17.3149 22 12 22C6.47715 22 2 17.5228 2 12C2 6.68514 6.14629 2.33869 11.3807 2.01886Z"></path></svg>`;
 
 function atualizarIconeTema() {
-    if (themeToggle && resetBtn) {
+    if (themeToggle) {
         if (document.body.classList.contains("dark")) {
-            themeToggle.src = "assets/img/sun.png";
-            resetBtn.src = "assets/img/reiniciar_branco.png"; 
+            themeToggle.innerHTML = sunIcon;
         } else {
-            themeToggle.src = "assets/img/moon.png";
-            resetBtn.src = "assets/img/reiniciar_preto.png"; 
+            themeToggle.innerHTML = moonIcon;
         }
     }
 }
@@ -234,15 +247,8 @@ if (localStorage.getItem("temaEscuro") === "true") {
 }
 
 // ---------------------------
-// RESET (MANTIDO)
+// RESET REMOVIDO
 // ---------------------------
-if (resetBtn) {
-    resetBtn.onclick = () => {
-        localStorage.removeItem("progress");
-        localStorage.removeItem("allCompletedShown");
-        carregar();
-    };
-}
 
 // --- SINCRONIZAR LOCALSTORAGE COM LISTA ATUAL --- //
 function limparLocalStorageAntigo() {
@@ -266,5 +272,64 @@ function limparLocalStorageAntigo() {
     }
 }
 
-window.addEventListener("DOMContentLoaded", limparLocalStorageAntigo);
+// ---------------------------
+// NAVEGAÇÃO MOBILE (REFINE)
+// ---------------------------
+window.addEventListener("DOMContentLoaded", () => {
+    limparLocalStorageAntigo();
+
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    const navButtons = document.querySelectorAll('.nav-btn');
+    const columns = document.querySelectorAll('.column');
+
+    if (menuToggle && mobileNav) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('open');
+            mobileNav.classList.toggle('open');
+        });
+    }
+
+    navButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetId = btn.getAttribute('data-target');
+
+            // Não fechar o menu ao selecionar — só atualiza a aba.
+            // O menu só fecha quando o usuário clicar no botão hambúrguer/X.
+
+            // Atualizar botões
+            navButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Atualizar colunas
+            columns.forEach(col => {
+                col.classList.remove('active-mobile');
+                if (col.id === targetId) {
+                    col.classList.add('active-mobile');
+                }
+            });
+        });
+    });
+
+    // Fechar o menu ao clicar fora (overlay) — respeita cliques dentro do menu e no botão
+    document.addEventListener('click', (e) => {
+        if (!menuToggle || !mobileNav) return;
+        if (!mobileNav.classList.contains('open')) return;
+
+        // Use composedPath para detectar corretamente o local do clique mesmo
+        // se o elemento alvo for removido/re-renderizado pelos handlers (ex: toggle -> carregar()).
+        const path = (typeof e.composedPath === 'function') ? e.composedPath() : (e.path || []);
+
+        const clickedInsideNav = path.some(node => node && node.id === 'mobileNav');
+        const clickedToggle = path.some(node => node && node.id === 'menuToggle');
+        const clickedInsideColumn = path.some(node => node && node.classList && node.classList.contains('column'));
+
+        // Não fechar ao clicar dentro do menu nem ao interagir com as colunas/atividades.
+        if (!clickedInsideNav && !clickedToggle && !clickedInsideColumn) {
+            menuToggle.classList.remove('open');
+            mobileNav.classList.remove('open');
+        }
+    });
+});
+
 carregar();

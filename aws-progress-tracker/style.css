@@ -50,7 +50,7 @@ body {
     background: var(--bg-gradient);
     color: var(--text);
     margin: 0;
-    padding: 0px 45px; 
+    padding: 0px 45px;
     transition: background-color 0.4s ease, color 0.4s ease;
     min-height: 100vh;
 }
@@ -72,6 +72,8 @@ header h2 {
 .icons {
     display: flex;
     gap: 20px;
+    align-items: center;
+    /* Garantir alinhamento vertical */
 }
 
 .icon {
@@ -349,17 +351,229 @@ header h2 {
     }
 }
 
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: stretch;
+        padding-bottom: 10px;
+    }
+
+    .header-main {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    header h2 {
+        font-size: 1.5em;
+        margin: 0;
+        background: linear-gradient(135deg, var(--accent), var(--accent-light));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .mobile-nav {
+        display: none;
+        /* Mais visível no tema claro */
+        gap: 8px;
+        justify-content: center;
+        padding: 8px;
+        background: var(--card);
+        border-radius: 12px;
+        border: 1px solid var(--progress-bg);
+        margin-bottom: 20px;
+        animation: slideDown 0.3s ease-out;
+        box-shadow: 0 8px 20px var(--shadow);
+    }
+
+    /* Mantém o estilo translúcido/blur no tema escuro para contraste */
+    .dark .mobile-nav {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: none;
+    }
+
+    .mobile-nav.open {
+        display: flex;
+        /* Mostra quando aberto */
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .nav-btn {
+        flex: 1;
+        padding: 12px 5px;
+        border: none;
+        background: transparent;
+        color: var(--text);
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        font-size: 0.85em;
+        opacity: 0.7;
+    }
+
+    .nav-btn.active {
+        background: var(--card);
+        color: var(--accent);
+        box-shadow: 0 4px 15px var(--shadow);
+        opacity: 1;
+        transform: translateY(-2px);
+    }
+
+    .columns {
+        flex-direction: column;
+        display: block;
+    }
+
+    .column {
+        width: 100%;
+        display: none;
+        margin-bottom: 0;
+        border: none;
+        box-shadow: none;
+        background: transparent;
+        padding: 10px 0;
+    }
+
+    .column h3 {
+        display: none;
+    }
+
+    .column.active-mobile {
+        display: block;
+        animation: slideIn 0.4s ease-out;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+}
+
+/* Caso o usuário queira esconder os ícones de vez no Mobile e usar só hambúrguer, 
+   mas aqui vamos manter os botões de tema/reset visíveis ao lado do hambúrguer se necessário.
+   O hambúrguer aqui é mais conceitual para o menu de tabs. */
+
 @media (max-width: 600px) {
     body {
         padding: 15px;
     }
 
-    .columns {
-        flex-direction: column;
+    header h2 {
+        font-size: 1.2em;
     }
 
-    .column {
-        width: 100%;
-        min-height: 200px;
+    .nav-btn {
+        padding: 8px 5px;
+        font-size: 0.8em;
     }
+}
+
+/* --- ICON BUTTONS --- */
+.icon-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    background: transparent;
+    /* Invisível conforme solicitado */
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.icon-btn svg {
+    width: 26px;
+    height: 26px;
+    fill: none;
+    stroke: var(--text);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: 0.3s;
+    opacity: 0.8;
+}
+
+.icon-btn:hover svg {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Ocultar elementos novos no desktop */
+.mobile-nav {
+    display: none;
+}
+
+.header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* --- MENU TOGGLE (HAMBURGER) --- */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.menu-toggle span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--text);
+    border-radius: 3px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+}
+
+.menu-toggle.open span:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+}
+
+.menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(10px);
+}
+
+.menu-toggle.open span:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
 }
