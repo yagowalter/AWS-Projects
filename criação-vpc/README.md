@@ -1,4 +1,4 @@
-# ☁️ Lab 02 – Criação de VPC e Servidor Web na AWS
+# ☁️ Lab – Criação de VPC e Servidor Web na AWS
 
 <p align="center">
   <img src="https://img.shields.io/badge/AWS-VPC-orange?logo=amazon-aws&logoColor=white" />
