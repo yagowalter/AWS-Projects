@@ -53,6 +53,15 @@ Ao final deste laboratório, fui capaz de:
 
    ![Conexão EC2 com RDS](assets/imgs/banco.png)
 
+5. 🌍 **Interação com o Banco de Dados**
+   - Utilizei a aplicação web para **criar, editar e remover registros**.
+   - Os dados foram armazenados no banco RDS e **replicados automaticamente** para a instância secundária em outra Availability Zone.
+
+   ![Aplicação web interagindo com o banco](assets/imgs/banco_resultado.png)
+
+6. 🧹 **Encerramento do Laboratório**
+   - Finalizei o laboratório utilizando a opção **End Lab**, encerrando automaticamente todos os recursos criados.
+
 ---
 
 ## 💡 Conceitos Aprendidos
