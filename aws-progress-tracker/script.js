@@ -86,6 +86,7 @@ const cps = [
     { title: "Lifelong Learning e PDI", deadline: "expirado" },
     { title: "Atividade de CV", deadline: "expirado" },
     { title: "Atividade de LinkedIn", deadline: "21/01/2026" },
+    { title: "Atividade de Vídeo Apresentação", deadline: "27/01/2026" }
 ];
 
 // ============================
