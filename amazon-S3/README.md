@@ -33,7 +33,7 @@ Ao final do laboratório, foi possível:
 
    ![AWS CLI Configure](assets/imgs/json.png)
 
-3. 🪣 **Criação do Bucket Amazon S3**
+3. ⚙️ **Criação do Bucket Amazon S3**
    - Criei um bucket S3 utilizando comandos da AWS CLI.
    - O bucket foi criado em uma região específica e com nome exclusivo.
 
