@@ -1,0 +1,60 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  HostedZoneId:
+    Type: String
+  BucketName:
+    Type: String
+
+Resources:
+  # O Cadeado (SSL)
+  MyCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: yagowalter.com.br/progress-tracker
+      ValidationMethod: DNS
+      DomainValidationOptions:
+        - DomainName: yagowalter.com.br/progress-tracker
+          HostedZoneId: !Ref HostedZoneId
+
+  # O Motor de Entrega (CloudFront)
+  MyDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Origins:
+          - DomainName: !Sub "${BucketName}.s3.amazonaws.com"
+            Id: S3Origin
+            OriginAccessControlId: !GetAtt MyOAC.Id
+            S3OriginConfig:
+              OriginAccessIdentity: ""
+        Enabled: true
+        DefaultRootObject: index.html
+        ViewerCertificate:
+          AcmCertificateArn: !Ref MyCertificate
+          SslSupportMethod: sni-only
+
+  # A Chave de Segurança (OAC)
+  MyOAC:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub "OAC-${AWS::StackName}"
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  # Permissão para o CloudFront ler o S3
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref BucketName
+      PolicyDocument:
+        Statement:
+          - Action: s3:GetObject
+            Effect: Allow
+            Resource: !Sub "arn:aws:s3:::${BucketName}/*"
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${MyDistribution}"

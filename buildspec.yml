@@ -1,0 +1,11 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - echo "Empacotando apenas a pasta web do aws-progress-tracker"
+
+artifacts:
+  base-directory: aws-progress-tracker/web
+  files:
+    - '**/*'
