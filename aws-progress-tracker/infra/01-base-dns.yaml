@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Fase 1 - Infraestrutura Base (S3 e Route 53)
+
+Resources:
+  # Criando a "Casa" do site
+  SiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "progress-tracker-${AWS::StackName}-${AWS::AccountId}"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  # Criando o "Endereço" do site
+  MyHostedZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: yagowalter.com.br/progress-tracker
+
+Outputs:
+  BucketName:
+    Value: !Ref SiteBucket
+  HostedZoneId:
+    Value: !Ref MyHostedZone
