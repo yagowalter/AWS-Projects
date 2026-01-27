@@ -3,9 +3,13 @@ version: 0.2
 phases:
   build:
     commands:
-      - echo "Empacotando apenas a pasta web do aws-progress-tracker"
+      - echo "Montando dist com web + assets"
+      - rm -rf dist
+      - mkdir -p dist
+      - cp -r aws-progress-tracker/web/* dist/
+      - cp -r aws-progress-tracker/assets dist/assets
 
 artifacts:
-  base-directory: aws-progress-tracker/web
+  base-directory: dist
   files:
     - '**/*'
