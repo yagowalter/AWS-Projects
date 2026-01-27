@@ -33,7 +33,7 @@ const kcs = [
     { title: "KC 204 - CERT - KC - Bancos de dados", deadline: "-" },
     { title: "KC 199 - CERT - KC - Infraestrutura global da AWS", deadline: "-" },
     { title: "KC 202 - CERT - KC - Amazon Virtual Private Cloud [VPC]", deadline: "-" },
-    { title: "KC 207 - CERT - KC - Balanceamento - Dimensionamento - Monitoramento", deadline: "-" },
+    { title: "KC 207 - CERT - KC - Balanceamento - Dimensionamento - Monitoramento", deadline: "--" },
     { title: "KC 215 - JAWS - KC - Computação (bancos de dados)", deadline: "02/02/2026" },
     { title: "KC 216 - Serviços de rede AWS", deadline: "02/02/2026" },
     { title: "KC 217 - JAWS - KC - Armazenamento e arquivamento", deadline: "02/02/2026" },
